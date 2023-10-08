@@ -1,0 +1,5 @@
+{
+"admin":"7|Qo3X0TDNEpUTHQoQUJMHLrErGJyHg89uy71MyuHQ23b9265b",
+"update":"8|slyIq2F9oVT6U6ulcaLX0OhxQyoZCqT6EyLPWmG417bde75f",
+"basic":"9|FWVTDNEpUTHQoQUJMHLrErGJyHg89uy71MyuH2jZ7abde002"
+}

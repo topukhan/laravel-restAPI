@@ -12,7 +12,10 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user = $this->user();
+        return $user != null && $user->tokens->contains(function ($token) {
+            return $token->can('update') || $token->can('admin');
+        });
     }
 
     /**
@@ -47,8 +50,10 @@ class UpdateCustomerRequest extends FormRequest
     }
     protected function prepareForValidation()
     {
-        $this->merge([
-            'postal_code' => $this->postalCode,
-        ]);
+        if ($this->postalCode) {
+            $this->merge([
+                'postal_code' => $this->postalCode,
+            ]);
+        }
     }
 }
