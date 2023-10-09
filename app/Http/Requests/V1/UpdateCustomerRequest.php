@@ -34,9 +34,11 @@ class UpdateCustomerRequest extends FormRequest
                 'address' => ['required'],
                 'city' => ['required'],
                 'state' => ['required'],
-                'postalCode' => ['required'],
+                'postal_code' => ['required'],
+                'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
             ];
         } else {
+            
             return [
                 'name' => ['sometimes', 'required'],
                 'type' => ['sometimes', 'required', Rule::in(['I', 'B', 'i', 'b'])],
@@ -44,16 +46,18 @@ class UpdateCustomerRequest extends FormRequest
                 'address' => ['sometimes', 'required'],
                 'city' => ['sometimes', 'required'],
                 'state' => ['sometimes', 'required'],
-                'postalCode' => ['sometimes', 'required'],
+                'postal_code' => ['sometimes', 'required'],
+                'image' => ['sometimes', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
             ];
         }
     }
     protected function prepareForValidation()
     {
-        if ($this->postalCode) {
-            $this->merge([
-                'postal_code' => $this->postalCode,
-            ]);
-        }
+        // if ($this->postalCode) {
+        //     $this->merge([
+        //         'postal_code' => $this->postalCode,
+        //     ]);
+        // }
+        // dd($this->all());
     }
 }

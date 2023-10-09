@@ -15,6 +15,7 @@ class Customer extends Model
         'city',
         'state',
         'postal_code',
+        'image',
     ];
 
     use HasFactory;

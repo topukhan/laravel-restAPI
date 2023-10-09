@@ -36,8 +36,38 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        return new CustomerResource(Customer::create($request->all()));
+        // Handle image upload (if an image is present)
+        if ($request->hasFile('image')) {
+            // Get the uploaded file
+            $image = $request->file('image');
+
+            // Generate a unique filename for the image
+            $imageName = time() . '.' . $image->getClientOriginalExtension();
+
+            // Store the image in a specified directory (e.g., 'public/customer_images')
+            $path = public_path('customer_images');
+
+            // Add the image path to the request data
+            $image->move($path, $imageName);
+        }
+        $data = [
+            'name' => $request->name,
+            'type' => $request->type,
+            'email' => $request->email,
+            'address' => $request->address,
+            'city' => $request->city,
+            'state' => $request->state,
+            'postal_code' => $request->postal_code,
+            'image' => $imageName,
+        ];
+
+        // Create the customer
+        $customer = Customer::create($data);
+
+        // Return a response using the CustomerResource
+        return new CustomerResource($customer);
     }
+
 
     /**
      * Display the specified resource.
@@ -56,11 +86,11 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
+        // dd($request->all());
         $status = $customer->update($request->all());
-        if($status){
+        if ($status) {
             return response()->json(array('message' => 'updated'));
-        }
-        else{
+        } else {
             return response()->json(array('error' => 'Something went wrong'));
         }
     }

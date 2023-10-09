@@ -23,20 +23,28 @@ class StoreCustomerRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
+        // dd('rule');
+        $validated = [
             'name' => ['required'],
             'type' => ['required', Rule::in(['I', 'B', 'i', 'b'])],
             'email' => ['required', 'email', 'max:255', 'unique:customers'],
             'address' => ['required'],
             'city' => ['required'],
             'state' => ['required'],
-            'postalCode' => ['required'],
+            'postal_code' => ['required'], // postalCode
+            'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
         ];
+
+        // dd($validated);
+
+        return $validated;
     }
-    protected function prepareForValidation()
-    {
-        $this->merge([
-            'postal_code' => $this->postalCode,
-        ]);
-    }
+    // protected function prepareForValidation()
+    // {
+    //     if ($this->postalCode) {
+    //         $this->merge([
+    //             'postal_code' => $this->postalCode,
+    //         ]);
+    //     }
+    // }
 }
