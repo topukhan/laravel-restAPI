@@ -14,6 +14,7 @@ class CustomerResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $imageUrl = asset('customer_images/' . $this->image);
 
         return [
             'id' => $this->id,
@@ -24,7 +25,7 @@ class CustomerResource extends JsonResource
             'city' => $this->city,
             'state' => $this->state,
             'postalCode' => $this->postal_code,
-            'image' => $this->image,
+            'image' => $imageUrl,
             'invoices' => InvoiceResource::collection($this->whenLoaded('invoices')),
         ];
     }

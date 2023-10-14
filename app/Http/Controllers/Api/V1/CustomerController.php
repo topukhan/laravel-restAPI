@@ -10,6 +10,7 @@ use App\Http\Resources\V1\CustomerResource;
 use App\Http\Resources\V1\CustomerCollection;
 use Illuminate\Http\Request;
 use App\Filters\V1\CustomersFilter;
+use App\Http\Requests\V1\DeleteCustomerRequest;
 
 class CustomerController extends Controller
 {
@@ -98,8 +99,14 @@ class CustomerController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Customer $customer)
+    public function destroy(DeleteCustomerRequest $request, Customer $customer)
     {
-        //
+        $status = $customer->delete();
+
+        if ($status) {
+            return response()->json(array('message' => "Customer deleted successfully"));
+        } else {
+            return response()->json(array('error' => 'Failed to delete the customer'));
+        }
     }
 }
