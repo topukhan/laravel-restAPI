@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/', 'welcome');
-
+// create customers tokens 
 // Route::get('/setup', function () {
 //     $credentials = [
 //         'email' => 'admin@gmail.com',
@@ -49,4 +49,4 @@ Route::view('/', 'welcome');
 //     }
 // });
 
-Route::view('/customers', 'page.customers');
+Route::view('/customers', 'customer.index');
