@@ -37,6 +37,7 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
+        dd()->request->all();
         // Handle image upload (if an image is present)
         if ($request->hasFile('image')) {
             // Get the uploaded file
