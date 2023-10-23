@@ -80,8 +80,9 @@
                 const showButton = document.createElement('button');
                 showButton.textContent = 'Show';
                 showButton.addEventListener('click', () => {
-                    // Navigate to a specific page using the customer's ID
-                    window.location.href = `/customer/show/${customer.id}`;
+                    const customerId = customer.id;
+
+                    window.location.href = `/customer/show/${customerId}`;
                 });
 
                 const editButton = document.createElement('button');
@@ -94,8 +95,11 @@
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
                 deleteButton.addEventListener('click', () => {
+                    const customerId = customer.id;
                     // Add a confirmation dialog or make an API request to delete the customer
-                    // You can handle deletion logic here
+                    if (confirm('Are you sure you want to delete this customer?')) {
+                        deleteCustomer(customerId);
+                    }
                 });
 
                 // Append the action buttons to the cell
@@ -103,6 +107,26 @@
                 cell4.appendChild(editButton);
                 cell4.appendChild(deleteButton);
             });
+        }
+
+        function deleteCustomer(customerId) {
+            const deleteUrl = `/api/v1/customers/${customerId}`;
+
+            fetch(deleteUrl, {
+                    method: 'DELETE',
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Customer deleted successfully');
+                        // Optionally, redirect to the customer list page
+                        window.location.href = '/customers';
+                    } else {
+                        alert('Failed to delete customer');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error deleting customer:', error);
+                });
         }
 
         // Pagination buttons event listeners

@@ -24,7 +24,6 @@ class StoreCustomerRequest extends FormRequest
      */
     public function rules(): array
     {
-        // dd('rule');
         $validated = [
             'name' => ['required'],
             'type' => ['required', Rule::in(['I', 'B', 'i', 'b'])],
@@ -35,8 +34,6 @@ class StoreCustomerRequest extends FormRequest
             'postal_code' => ['required'], // postalCode
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
         ];
-
-        // dd($validated);
 
         return $validated;
     }

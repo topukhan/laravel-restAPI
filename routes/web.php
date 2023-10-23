@@ -51,3 +51,4 @@ Route::view('/', 'welcome');
 
 Route::view('/customers', 'customer.index');
 Route::view('/customers/create', 'customer.create');
+Route::view('/customer/show/{id}', 'customer.show');

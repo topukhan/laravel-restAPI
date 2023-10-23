@@ -37,7 +37,8 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        dd()->request->all();
+        // dd($request->all());
+        $imageName = null;
         // Handle image upload (if an image is present)
         if ($request->hasFile('image')) {
             // Get the uploaded file
@@ -52,7 +53,8 @@ class CustomerController extends Controller
             // Add the image path to the request data
             $image->move($path, $imageName);
         }
-        $data = [
+        // Create the customer
+        $customer = Customer::create([
             'name' => $request->name,
             'type' => $request->type,
             'email' => $request->email,
@@ -61,10 +63,7 @@ class CustomerController extends Controller
             'state' => $request->state,
             'postal_code' => $request->postal_code,
             'image' => $imageName,
-        ];
-
-        // Create the customer
-        $customer = Customer::create($data);
+        ]);
 
         // Return a response using the CustomerResource
         return new CustomerResource($customer);
