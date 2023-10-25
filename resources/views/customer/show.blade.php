@@ -55,13 +55,9 @@
                 customerPostalCode.textContent = `Postal Code: ${data.postalCode}`;
                 if (data.image && isImageFileName(data.image)) {
                     customerImage.src = `${data.image}`;
-                    console.log('true bro');
-
                 } else {
                     // If there is no valid image name, hide the image tag
                     customerImage.style.display = 'none';
-                    console.log('false bro');
-
                 }
                 console.log(data);
             })
