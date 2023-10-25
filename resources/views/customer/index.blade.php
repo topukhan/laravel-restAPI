@@ -29,9 +29,9 @@
             </tbody>
         </table>
         <div class="pagination">
-            <button id="prevPage">Previous Page</button>
+            <button id="prevPage" class="btn btn-dark">Previous Page</button>
             <span id="currentPage" class="px-3">Page 1</span>
-            <button id="nextPage">Next Page</button>
+            <button id="nextPage" class="btn btn-dark">Next Page</button>
         </div>
     </div>
 
@@ -43,9 +43,12 @@
         const errorDiv = document.getElementById('error-message');
         const tableBody = document.querySelector('tbody');
         let currentPage = 1; // Current page
+        const itemsPerPage = 15; // Number of items to display per page
+        let startIndex = 1; // Start index for the current page
 
         function fetchAndDisplayData(page) {
-            fetch(`${apiUrl}?page=${page}`)
+            const startIndex = (page - 1) * itemsPerPage + 1;
+            fetch(`${apiUrl}?page=${page}&per_page=${itemsPerPage}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -65,41 +68,40 @@
         }
 
         function displayCustomerData(customerData) {
-            customerData.forEach(customer => {
+            customerData.forEach((customer, index) => {
                 const row = tableBody.insertRow();
                 const cell1 = row.insertCell(0);
                 const cell2 = row.insertCell(1);
                 const cell3 = row.insertCell(2);
                 const cell4 = row.insertCell(3);
 
-                cell1.textContent = customer.id;
+                // Display the index (add the startIndex to start from the correct number)
+                cell1.textContent = index + startIndex;
                 cell2.textContent = customer.name;
                 cell3.textContent = customer.email;
 
                 // Create action buttons and set their attributes
                 const showButton = document.createElement('button');
                 showButton.textContent = 'Show';
+                showButton.className = 'btn btn-primary';
                 showButton.addEventListener('click', () => {
                     const customerId = customer.id;
-
                     window.location.href = `/customer/show/${customerId}`;
                 });
 
                 const editButton = document.createElement('button');
                 editButton.textContent = 'Edit';
+                editButton.className = 'btn btn-info mx-2';
                 editButton.addEventListener('click', () => {
-                    // Navigate to a specific page for editing using the customer's ID
                     window.location.href = `/customer/edit/${customer.id}`;
                 });
 
                 const deleteButton = document.createElement('button');
                 deleteButton.textContent = 'Delete';
+                deleteButton.className = 'btn btn-danger';
                 deleteButton.addEventListener('click', () => {
                     const customerId = customer.id;
-                    // Add a confirmation dialog or make an API request to delete the customer
-                    if (confirm('Are you sure you want to delete this customer?')) {
-                        deleteCustomer(customerId);
-                    }
+                    deleteCustomer(customerId, row);
                 });
 
                 // Append the action buttons to the cell
@@ -109,17 +111,16 @@
             });
         }
 
-        function deleteCustomer(customerId) {
+        function deleteCustomer(customerId, row) {
             const deleteUrl = `/api/v1/customers/${customerId}`;
-
             fetch(deleteUrl, {
                     method: 'DELETE',
                 })
                 .then(response => {
                     if (response.ok) {
-                        alert('Customer deleted successfully');
-                        // Optionally, redirect to the customer list page
-                        window.location.href = '/customers';
+                        // Customer deleted successfully, remove the row from the table
+                        tableBody.removeChild(row);
+                        console.log('Customer deleted successfully');
                     } else {
                         alert('Failed to delete customer');
                     }
@@ -133,6 +134,7 @@
         document.getElementById('prevPage').addEventListener('click', () => {
             if (currentPage > 1) {
                 currentPage--;
+                startIndex -= itemsPerPage;
                 fetchAndDisplayData(currentPage);
                 updatePagination();
             }
@@ -140,6 +142,7 @@
 
         document.getElementById('nextPage').addEventListener('click', () => {
             currentPage++;
+            startIndex += itemsPerPage;
             fetchAndDisplayData(currentPage);
             updatePagination();
         });
@@ -153,6 +156,8 @@
         fetchAndDisplayData(currentPage);
         updatePagination();
     </script>
+
+
 </body>
 
 </html>
