@@ -19,7 +19,7 @@
                     <label for="name" class="form-label">Name: <span class="text-danger">*</span> </label>
                     <input type="text" id="name" name="name" class="form-control" required>
                 </div>
-                <div class="col-md-6 mb-3">
+                <!-- <div class="col-md-6 mb-3">
                     <label for="type" class="form-label">Type (I/B): <span class="text-danger">*</span></label>
                     <input type="text" id="type" name="type" class="form-control" required>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="postalCode" class="form-label">Postal Code: <span class="text-danger">*</span></label>
                     <input type="text" id="postalCode" name="postalCode" class="form-control" required>
-                </div>
+                </div> -->
                 <div class="col-md-6 mb-3">
                     <label for="image" class="form-label">Image:</label>
                     <input type="file" id="image" name="image" class="form-control" accept="image/*">
@@ -50,7 +50,7 @@
             </div>
             <div class="mb-3">
                 <button type="submit" class="btn btn-primary">Create Customer</button>
-                <a href="{{ url('customers') }}" class="btn btn-danger ml-2">Cancel</a>
+                <a href="{{ url('customers') }}" class="btn btn-danger ml-2">Back</a>
             </div>
         </form>
         <div id="error-message" style="color: red;"></div>
@@ -66,22 +66,22 @@
             event.preventDefault(); // Prevent the default form submission behavior
 
             const name = document.getElementById('name').value;
-            const type = document.getElementById('type').value;
-            const email = document.getElementById('email').value;
-            const address = document.getElementById('address').value;
-            const city = document.getElementById('city').value;
-            const state = document.getElementById('state').value;
-            const postalCode = document.getElementById('postalCode').value;
+            // const type = document.getElementById('type').value;
+            // const email = document.getElementById('email').value;
+            // const address = document.getElementById('address').value;
+            // const city = document.getElementById('city').value;
+            // const state = document.getElementById('state').value;
+            // const postalCode = document.getElementById('postalCode').value;
             const image = document.getElementById('image').files[0];
 
             const formData = new FormData();
             formData.append('name', name);
-            formData.append('type', type);
-            formData.append('email', email);
-            formData.append('address', address);
-            formData.append('city', city);
-            formData.append('state', state);
-            formData.append('postal_code', postalCode);
+            // formData.append('type', type);
+            // formData.append('email', email);
+            // formData.append('address', address);
+            // formData.append('city', city);
+            // formData.append('state', state);
+            // formData.append('postal_code', postalCode);
             formData.append('image', image);
 
             fetch(apiUrl, {
@@ -119,12 +119,12 @@
         function clearFormFields() {
             // Optionally, clear form fields after successful submission
             document.getElementById('name').value = '';
-            document.getElementById('type').value = '';
-            document.getElementById('email').value = '';
-            document.getElementById('address').value = '';
-            document.getElementById('city').value = '';
-            document.getElementById('state').value = '';
-            document.getElementById('postalCode').value = '';
+            // document.getElementById('type').value = '';
+            // document.getElementById('email').value = '';
+            // document.getElementById('address').value = '';
+            // document.getElementById('city').value = '';
+            // document.getElementById('state').value = '';
+            // document.getElementById('postalCode').value = '';
             document.getElementById('image').value = '';
         }
     </script>

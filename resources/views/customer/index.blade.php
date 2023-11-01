@@ -19,9 +19,9 @@
                 <tr>
                     <th>Customer ID</th>
                     <th>Name</th>
-                    <th>Email</th>
+                    <!-- <th>Email</th> -->
                     <th>Action</th>
-                    <!-- Add more columns as needed -->
+                    <!-- more columns as needed -->
                 </tr>
             </thead>
             <tbody>
@@ -72,13 +72,13 @@
                 const row = tableBody.insertRow();
                 const cell1 = row.insertCell(0);
                 const cell2 = row.insertCell(1);
+                // const cell3 = row.insertCell(2);
                 const cell3 = row.insertCell(2);
-                const cell4 = row.insertCell(3);
 
                 // Display the index (add the startIndex to start from the correct number)
                 cell1.textContent = index + startIndex;
                 cell2.textContent = customer.name;
-                cell3.textContent = customer.email;
+                // cell3.textContent = customer.email;
 
                 // Create action buttons and set their attributes
                 const showButton = document.createElement('button');
@@ -105,9 +105,9 @@
                 });
 
                 // Append the action buttons to the cell
-                cell4.appendChild(showButton);
-                cell4.appendChild(editButton);
-                cell4.appendChild(deleteButton);
+                cell3.appendChild(showButton);
+                cell3.appendChild(editButton);
+                cell3.appendChild(deleteButton);
             });
         }
 

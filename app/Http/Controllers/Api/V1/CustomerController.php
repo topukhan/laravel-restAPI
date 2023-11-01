@@ -28,7 +28,6 @@ class CustomerController extends Controller
         if ($includeInvoices) {
             $customers = $customers->with('invoices');
         }
-        // dd('foo');
         return new CustomerCollection($customers->paginate()->appends($request->query()));
     }
 
@@ -37,7 +36,6 @@ class CustomerController extends Controller
      */
     public function store(StoreCustomerRequest $request)
     {
-        // dd($request->all());
         $imageName = null;
         // Handle image upload (if an image is present)
         if ($request->hasFile('image')) {
@@ -56,12 +54,12 @@ class CustomerController extends Controller
         // Create the customer
         $customer = Customer::create([
             'name' => $request->name,
-            'type' => $request->type,
-            'email' => $request->email,
-            'address' => $request->address,
-            'city' => $request->city,
-            'state' => $request->state,
-            'postal_code' => $request->postal_code,
+            // 'type' => $request->type,
+            // 'email' => $request->email,
+            // 'address' => $request->address,
+            // 'city' => $request->city,
+            // 'state' => $request->state,
+            // 'postal_code' => $request->postal_code,
             'image' => $imageName,
         ]);
 
@@ -87,7 +85,6 @@ class CustomerController extends Controller
      */
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        // dd($request->all());
         $status = $customer->update($request->all());
         if ($status) {
             return response()->json(array('message' => 'updated'));

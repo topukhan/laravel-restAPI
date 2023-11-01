@@ -19,7 +19,7 @@
                     <label for="name" class="form-label">Name: <span class="text-danger">*</span> </label>
                     <input type="text" id="name" name="name" class="form-control" required>
                 </div>
-                <div class="col-md-6 mb-3">
+                <!-- <div class="col-md-6 mb-3">
                     <label for="type" class="form-label">Type (I/B): <span class="text-danger">*</span></label>
                     <input type="text" id="type" name="type" class="form-control" required>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="col-md-6 mb-3">
                     <label for="postalCode" class="form-label">Postal Code: <span class="text-danger">*</span></label>
                     <input type="text" id="postalCode" name="postalCode" class="form-control" required>
-                </div>
+                </div> -->
                 <div class="col-md-6 mb-3">
                     <label for="image" class="form-label">Image:</label>
                     <input type="file" id="image" name="image" class="form-control" accept="image/*">
@@ -73,12 +73,12 @@
                 const data = responseData.data;
                 console.log(data);
                 document.getElementById('name').value = `${data.name}`;
-                document.getElementById('type').value = `${data.type}`;
-                document.getElementById('email').value = `${data.email}`;
-                document.getElementById('address').value = `${data.address}`;
-                document.getElementById('city').value = `${data.city}`;
-                document.getElementById('state').value = `${data.state}`;
-                document.getElementById('postalCode').value = `${data.postalCode}`;
+                // document.getElementById('type').value = `${data.type}`;
+                // document.getElementById('email').value = `${data.email}`;
+                // document.getElementById('address').value = `${data.address}`;
+                // document.getElementById('city').value = `${data.city}`;
+                // document.getElementById('state').value = `${data.state}`;
+                // document.getElementById('postalCode').value = `${data.postalCode}`;
 
                 // Display the existing image if it exists
                 if (data.image && isImageFileName(data.image)) {
@@ -107,21 +107,21 @@
 
             // assign values from the populated fields
             const name = document.getElementById('name').value;
-            const type = document.getElementById('type').value;
-            const email = document.getElementById('email').value;
-            const address = document.getElementById('address').value;
-            const city = document.getElementById('city').value;
-            const state = document.getElementById('state').value;
-            const postalCode = document.getElementById('postalCode').value;
+            // const type = document.getElementById('type').value;
+            // const email = document.getElementById('email').value;
+            // const address = document.getElementById('address').value;
+            // const city = document.getElementById('city').value;
+            // const state = document.getElementById('state').value;
+            // const postalCode = document.getElementById('postalCode').value;
 
             const updatedCustomerData = {
                 name: name,
-                type: type,
-                email: email,
-                address: address,
-                city: city,
-                state: state,
-                postalCode: postalCode,
+                // type: type,
+                // email: email,
+                // address: address,
+                // city: city,
+                // state: state,
+                // postalCode: postalCode,
             };
 
             // Handle image update

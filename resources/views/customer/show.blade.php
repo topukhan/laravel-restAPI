@@ -13,13 +13,13 @@
         <h1>Customer Details</h1>
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title" id="customerName"></h5>
-                <p class="card-text" id="customerType"></p>
+                <h5 class="card-title" id="customerName"></h5><br>
+                <!-- <p class="card-text" id="customerType"></p>
                 <p class="card-text" id="customerEmail"></p>
                 <p class="card-text" id="customerAddress"></p>
                 <p class="card-text" id="customerCity"></p>
                 <p class="card-text" id="customerState"></p>
-                <p class="card-text" id="customerPostalCode"></p>
+                <p class="card-text" id="customerPostalCode"></p> -->
                 <img src="" alt="Customer Image" id="customerImage" class="img-fluid h-50 w-50 rounded">
             </div>
         </div>
@@ -30,16 +30,16 @@
         // Get the customer ID from the URL
         const customerId = window.location.pathname.split('/').pop();
 
-        console.log(customerId);
+        // console.log(customerId);
 
         const apiUrl = `/api/v1/customers/${customerId}`;
         const customerName = document.getElementById('customerName');
-        const customerType = document.getElementById('customerType');
-        const customerEmail = document.getElementById('customerEmail');
-        const customerAddress = document.getElementById('customerAddress');
-        const customerCity = document.getElementById('customerCity');
-        const customerState = document.getElementById('customerState');
-        const customerPostalCode = document.getElementById('customerPostalCode');
+        // const customerType = document.getElementById('customerType');
+        // const customerEmail = document.getElementById('customerEmail');
+        // const customerAddress = document.getElementById('customerAddress');
+        // const customerCity = document.getElementById('customerCity');
+        // const customerState = document.getElementById('customerState');
+        // const customerPostalCode = document.getElementById('customerPostalCode');
         const customerImage = document.getElementById('customerImage');
 
         fetch(apiUrl)
@@ -47,19 +47,19 @@
             .then(responseData => {
                 const data = responseData.data;
                 customerName.textContent = `Name: ${data.name}`;
-                customerType.textContent = `Type: ${data.type}`;
-                customerEmail.textContent = `Email: ${data.email}`;
-                customerAddress.textContent = `Address: ${data.address}`;
-                customerCity.textContent = `City: ${data.city}`;
-                customerState.textContent = `State: ${data.state}`;
-                customerPostalCode.textContent = `Postal Code: ${data.postalCode}`;
+                // customerType.textContent = `Type: ${data.type}`;
+                // customerEmail.textContent = `Email: ${data.email}`;
+                // customerAddress.textContent = `Address: ${data.address}`;
+                // customerCity.textContent = `City: ${data.city}`;
+                // customerState.textContent = `State: ${data.state}`;
+                // customerPostalCode.textContent = `Postal Code: ${data.postalCode}`;
                 if (data.image && isImageFileName(data.image)) {
                     customerImage.src = `${data.image}`;
                 } else {
                     // If there is no valid image name, hide the image tag
                     customerImage.style.display = 'none';
                 }
-                console.log(data);
+                console.log(data)
             })
             .catch(error => {
                 console.error('Error fetching customer data:', error);
@@ -67,7 +67,7 @@
 
         function isImageFileName(fileName) {
             // Define a regular expression pattern for common image file extensions
-            const imageFilePattern = /\.(jpg|jpeg|png|gif)$/i;
+            const imageFilePattern = /\.(jpg|jpeg|png|gif|jfif)$/i;
 
             // Use the pattern to test if the file name matches
             return imageFilePattern.test(fileName);

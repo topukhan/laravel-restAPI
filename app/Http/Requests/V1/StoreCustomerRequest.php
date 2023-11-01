@@ -26,12 +26,12 @@ class StoreCustomerRequest extends FormRequest
     {
         $validated = [
             'name' => ['required'],
-            'type' => ['required', Rule::in(['I', 'B', 'i', 'b'])],
-            'email' => ['required', 'email', 'max:255', 'unique:customers'],
-            'address' => ['required'],
-            'city' => ['required'],
-            'state' => ['required'],
-            'postal_code' => ['required'], // postalCode
+            // 'type' => ['required', Rule::in(['I', 'B', 'i', 'b'])],
+            // 'email' => ['required', 'email', 'max:255', 'unique:customers'],
+            // 'address' => ['required'],
+            // 'city' => ['required'],
+            // 'state' => ['required'],
+            // 'postal_code' => ['required'], // postalCode
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
         ];
 
