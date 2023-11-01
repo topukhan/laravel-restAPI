@@ -19,7 +19,6 @@
                 <tr>
                     <th>Customer ID</th>
                     <th>Name</th>
-                    <!-- <th>Email</th> -->
                     <th>Action</th>
                     <!-- more columns as needed -->
                 </tr>
@@ -72,13 +71,11 @@
                 const row = tableBody.insertRow();
                 const cell1 = row.insertCell(0);
                 const cell2 = row.insertCell(1);
-                // const cell3 = row.insertCell(2);
                 const cell3 = row.insertCell(2);
 
                 // Display the index (add the startIndex to start from the correct number)
                 cell1.textContent = index + startIndex;
                 cell2.textContent = customer.name;
-                // cell3.textContent = customer.email;
 
                 // Create action buttons and set their attributes
                 const showButton = document.createElement('button');

@@ -12,10 +12,6 @@ class UpdateCustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // $user = $this->user();
-        // return $user != null && $user->tokens->contains(function ($token) {
-        //     return $token->can('update') || $token->can('admin');
-        // });
         return true;
     }
 
@@ -30,35 +26,14 @@ class UpdateCustomerRequest extends FormRequest
         if ($method === 'PUT') {
             return [
                 'name' => ['required'],
-                // 'type' => ['required', Rule::in(['I', 'B', 'i', 'b'])],
-                // 'email' => ['required', 'email', 'max:255', Rule::unique('customers')],
-                // 'address' => ['required'],
-                // 'city' => ['required'],
-                // 'state' => ['required'],
-                // 'postalCode' => ['required'],
                 'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
             ];
         } else {
             
             return [
                 'name' => ['sometimes', 'required'],
-                // 'type' => ['sometimes', 'required', Rule::in(['I', 'B', 'i', 'b'])],
-                // 'email' => ['sometimes', 'required', 'email', 'max:255', Rule::unique('customers')],
-                // 'address' => ['sometimes', 'required'],
-                // 'city' => ['sometimes', 'required'],
-                // 'state' => ['sometimes', 'required'],
-                // 'postalCode' => ['sometimes', 'required'],
                 'image' => ['sometimes', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
             ];
         }
-    }
-    protected function prepareForValidation()
-    {
-        // if ($this->postalCode) {
-        //     $this->merge([
-        //         'postal_code' => $this->postalCode,
-        //     ]);
-        // }
-        // dd($this->all());
     }
 }

@@ -14,12 +14,6 @@
         <div class="card">
             <div class="card-body">
                 <h5 class="card-title" id="customerName"></h5><br>
-                <!-- <p class="card-text" id="customerType"></p>
-                <p class="card-text" id="customerEmail"></p>
-                <p class="card-text" id="customerAddress"></p>
-                <p class="card-text" id="customerCity"></p>
-                <p class="card-text" id="customerState"></p>
-                <p class="card-text" id="customerPostalCode"></p> -->
                 <img src="" alt="Customer Image" id="customerImage" class="img-fluid h-50 w-50 rounded">
             </div>
         </div>
@@ -34,12 +28,6 @@
 
         const apiUrl = `/api/v1/customers/${customerId}`;
         const customerName = document.getElementById('customerName');
-        // const customerType = document.getElementById('customerType');
-        // const customerEmail = document.getElementById('customerEmail');
-        // const customerAddress = document.getElementById('customerAddress');
-        // const customerCity = document.getElementById('customerCity');
-        // const customerState = document.getElementById('customerState');
-        // const customerPostalCode = document.getElementById('customerPostalCode');
         const customerImage = document.getElementById('customerImage');
 
         fetch(apiUrl)
@@ -47,12 +35,7 @@
             .then(responseData => {
                 const data = responseData.data;
                 customerName.textContent = `Name: ${data.name}`;
-                // customerType.textContent = `Type: ${data.type}`;
-                // customerEmail.textContent = `Email: ${data.email}`;
-                // customerAddress.textContent = `Address: ${data.address}`;
-                // customerCity.textContent = `City: ${data.city}`;
-                // customerState.textContent = `State: ${data.state}`;
-                // customerPostalCode.textContent = `Postal Code: ${data.postalCode}`;
+                
                 if (data.image && isImageFileName(data.image)) {
                     customerImage.src = `${data.image}`;
                 } else {

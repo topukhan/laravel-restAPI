@@ -12,8 +12,6 @@ class StoreCustomerRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        // $user = $this->user();
-        // return $user != null && $user->tokenCan('create');
         return true;
     }
 
@@ -26,23 +24,8 @@ class StoreCustomerRequest extends FormRequest
     {
         $validated = [
             'name' => ['required'],
-            // 'type' => ['required', Rule::in(['I', 'B', 'i', 'b'])],
-            // 'email' => ['required', 'email', 'max:255', 'unique:customers'],
-            // 'address' => ['required'],
-            // 'city' => ['required'],
-            // 'state' => ['required'],
-            // 'postal_code' => ['required'], // postalCode
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif|max:2048'],
         ];
-
         return $validated;
     }
-    // protected function prepareForValidation()
-    // {
-    //     if ($this->postalCode) {
-    //         $this->merge([
-    //             'postal_code' => $this->postalCode,
-    //         ]);
-    //     }
-    // }
 }

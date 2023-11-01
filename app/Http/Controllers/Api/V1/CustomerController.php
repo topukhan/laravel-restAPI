@@ -54,12 +54,6 @@ class CustomerController extends Controller
         // Create the customer
         $customer = Customer::create([
             'name' => $request->name,
-            // 'type' => $request->type,
-            // 'email' => $request->email,
-            // 'address' => $request->address,
-            // 'city' => $request->city,
-            // 'state' => $request->state,
-            // 'postal_code' => $request->postal_code,
             'image' => $imageName,
         ]);
 
