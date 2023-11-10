@@ -47,7 +47,9 @@
 
             const formData = new FormData();
             formData.append('name', name);
-            formData.append('image', image);
+            if (image) {
+                formData.append('image', image);
+            }
 
             fetch(apiUrl, {
                     method: 'POST',
@@ -67,6 +69,8 @@
                     if (response.ok) {
                         // Handle success
                         messageDiv.textContent = 'Customer created successfully.';
+                        console.log(response.statusText);
+                        
                         clearFormFields(); // Optionally, clear the form fields
                     } else {
                         // Handle other errors
