@@ -81,7 +81,7 @@ class CustomerController extends Controller
     {
         $status = $customer->update($request->all());
         if ($status) {
-            return response()->json(array('message' => 'updated'));
+            return response()->json(array('message' => 'Customer Updated Successfully'));
         } else {
             return response()->json(array('error' => 'Something went wrong'));
         }
